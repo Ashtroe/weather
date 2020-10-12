@@ -1,0 +1,177 @@
+body{
+  box-sizing: border-box;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 90vh;
+  margin: 20px;
+  background: #1F1F1F;
+  font-family: 'Montserrat', sans-serif;
+}
+.search-ctnr{
+  display: flex;
+  justify-content: flex-end;
+  background: #B8B8B8;
+  border: none;
+  height: 35px;
+  width: 536px;
+  border-radius: 20px;
+  padding: 5px;
+}
+.search-ctnr input{
+  border: none;
+  background: inherit;
+  text-align: center;
+  font-size: 20px;
+  margin-right: 60px;
+}
+.search-ctnr button{
+  font-size: 16px;
+  width: 108px;
+  border-radius: 15px;
+  border: none;
+  background: #208946;
+}
+#root{
+  width: 100%;
+}
+.top-nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0 20px 0;
+}
+.app-ctnr{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.weather-ctnr{
+
+  border-radius: 20px;
+  display: flex;
+  width: 800px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+
+  margin-top: 10px;
+  background: rgb(64,64,64);
+background: linear-gradient(51deg, rgba(64,64,64,1) 0%, rgba(36,36,36,1) 100%);
+}
+.weather-ctnr h1{
+
+  font-size: 200px;
+  left: 100px;
+  margin: 0;
+  color: #707070;
+}
+.weather-ctnr img{
+  width: 200px;
+  height: 200px;
+  margin:0;
+}
+.weather-ctnr h4{
+
+  left: 50px;
+  font-size: 32px;
+  text-align: center;
+  color: #707070;
+}
+#city-name{
+  font-size: 64px;
+  margin: 20px 0 0 0;
+}
+.weather-left{
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weather-right{
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.secondary-info{
+  position: relative;
+  top: 20px;
+  right: 40px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 80%;
+  margin-top: 50px;
+}
+.secondary-info .small-icon{
+  height: 50px;
+  width: 50px;
+  border: none;
+  margin: 0;
+}
+.secondary-info p{
+  text-align: left;
+  align-self: center;
+  color: #D6D6D6;
+  margin: 0;
+}
+#feel-icon{
+  background-image: url(./img/feel.png);
+  background-position: center;
+  background-size: contain;
+}
+#wind-icon{
+  background-image: url(./img/wind.png);
+  background-position: center;
+  background-size: contain;
+}
+#uv-icon{
+  background-image: url(./img/uv.png);
+  background-position: center;
+  background-size: contain;
+}
+
+
+.week-ctnr{
+  display: none;
+  padding: 10px;
+  width: 1364px;
+  height: 260px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  background: rgb(32,32,32);
+background: -webkit-linear-gradient(321deg, rgba(32,32,32,1) 0%, rgba(66,66,66,1) 100%);
+background: -o-linear-gradient(321deg, rgba(32,32,32,1) 0%, rgba(66,66,66,1) 100%);
+background: linear-gradient(51deg, rgba(32,32,32,1) 0%, rgba(66,66,66,1) 100%);
+  border-radius: 25px;
+}
+
+
+.week-card{
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: #1c1c1c;
+  color: #D6D6D6;
+  border-radius: 25px;
+}
+.week-card #week-day{
+  font-size: 36px;
+}
+.week-card #day-temp{
+  font-weight: 100;
+  font-size: 90px;
+  margin: 0 0 0 20px;
+}
