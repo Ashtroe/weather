@@ -64,7 +64,7 @@ class App extends React.Component {
       .then(response=>{
         this.setState({
           data:response,
-          icon:'http://openweathermap.org/img/wn/' + response.weather[0].icon + '@2x.png',
+          icon:'https://openweathermap.org/img/wn/' + response.weather[0].icon + '@2x.png',
           temp: Math.floor(response.main.temp) + '°',
           precip:response.weather[0].description,
           feel: Math.floor(response.main.feels_like) + '°',
@@ -76,7 +76,7 @@ class App extends React.Component {
         return (response);
       })
       .then(response=>{
-        return fetch('https//:api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&exclude=hourly,minutely&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
+        return fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&exclude=hourly,minutely&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
       })
       .then(response=>response.json())
       .then(response=>{
