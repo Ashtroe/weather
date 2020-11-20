@@ -11,7 +11,6 @@ function Card(props){
     'Fri',
     'Sat',
   ]
-  let today = new Date().getDay()
   if(props.dayTemp){
     return(
         <div className='week-card'>

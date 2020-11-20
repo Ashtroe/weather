@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
  function Weather(props) {
    if(props.icon){
@@ -10,7 +10,7 @@ import React, { Component } from 'react'
           <h4>{(props.precip)}</h4>
         </div>
         <div className= 'weather-right'>
-          <img src= {props.icon}/>
+          <img src= {props.icon} alt={props.precip}/>
           <div className='secondary-info'>
             <div className='small-icon' id='feel-icon'></div>
             <p>{props.feel}</p>
