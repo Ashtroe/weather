@@ -1,0 +1,4 @@
+
+[[redirects]]
+from = "https://5fb8139fec2709008d02017d--thirsty-lamport-29f7c5.netlify.app/api.openweathermap.org/data/*"
+to ="https://api.openweathermap.org/data/"
