@@ -76,7 +76,7 @@ class App extends React.Component {
         return (response);
       })
       .then(response=>{
-        return fetch('https:api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&exclude=hourly,minutely&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
+        return fetch('https//:api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&exclude=hourly,minutely&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
       })
       .then(response=>response.json())
       .then(response=>{
