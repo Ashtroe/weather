@@ -3,6 +3,7 @@ import './styles.css'
 import Weather from './components/Weather.js'
 import Submit from './components/Submit.js'
 import Card from './components/Card.js'
+import {weather, daily} from './weather-data.js'
 
 class App extends React.Component {
   constructor(props){
@@ -59,32 +60,45 @@ class App extends React.Component {
   }
   getData(city){
 
-    fetch('https:api.openweathermap.org/data/2.5/weather?q='+ city +'&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
-      .then(response=>response.json())
-      .then(response=>{
-        this.setState({
-          data:response,
-          icon:'https://openweathermap.org/img/wn/' + response.weather[0].icon + '@2x.png',
-          temp: Math.floor(response.main.temp) + '°',
-          precip:response.weather[0].description,
-          feel: Math.floor(response.main.feels_like) + '°',
-          wind: response.wind.speed + ' mph',
-          lat: response.coord.lat,
-          lon: response.coord.lon,
-
-        })
-        return (response);
-      })
-      .then(response=>{
-        return fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&exclude=hourly,minutely&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
-      })
-      .then(response=>response.json())
-      .then(response=>{
-        this.setState({
-          fiveDayTemps: response
-        })
-      })
-
+    // fetch('https:api.openweathermap.org/data/2.5/weather?q='+ city +'&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
+    //   .then(response=>response.json())
+    //   .then(response=>{
+    //     this.setState({
+    //       data:response,
+    //       icon:'https://openweathermap.org/img/wn/' + response.weather[0].icon + '@2x.png',
+    //       temp: Math.floor(response.main.temp) + '°',
+    //       precip:response.weather[0].description,
+    //       feel: Math.floor(response.main.feels_like) + '°',
+    //       wind: response.wind.speed + ' mph',
+    //       lat: response.coord.lat,
+    //       lon: response.coord.lon,
+    //
+    //     })
+    //     console.log(response);
+    //     return (response);
+    //   })
+    //   .then(response=>{
+    //     return fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&exclude=hourly,minutely&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
+    //   })
+    //   .then(response=>response.json())
+    //   .then(response=>{
+    //     this.setState({
+    //       fiveDayTemps: response
+    //     })
+    //     console.log(response);
+    //   })
+    console.log(weather);
+    this.setState({
+      data:weather,
+      icon:'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png',
+      temp: Math.floor(weather.main.temp) + '°',
+      precip:weather.weather[0].description,
+      feel: Math.floor(weather.main.feels_like) + '°',
+      wind: weather.wind.speed + ' mph',
+      lat: weather.coord.lat,
+      lon: weather.coord.lon,
+      fiveDayTemps: daily,
+    })
     }
 
 
