@@ -3,6 +3,7 @@ import './styles.css'
 import Weather from './components/Weather.js'
 import Submit from './components/Submit.js'
 import Card from './components/Card.js'
+import axios from 'axios'
 
 class App extends React.Component {
   constructor(props){
@@ -57,39 +58,34 @@ class App extends React.Component {
 
     this.getData = this.getData.bind(this)
   }
-  getData(city){
-
-    fetch('https:api.openweathermap.org/data/2.5/weather?q='+ city +'&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
-      .then(response=>response.json())
+  getData(userCity){
+    axios(
+      {
+      method:'post',
+      url:'/getweather',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      data:{
+        'city':userCity
+      }
+    })
       .then(response=>{
+        console.log(response);
         this.setState({
-          data:response,
-          icon:'https://openweathermap.org/img/wn/' + response.weather[0].icon + '@2x.png',
-          temp: Math.floor(response.main.temp) + '°',
-          precip:response.weather[0].description,
-          feel: Math.floor(response.main.feels_like) + '°',
-          wind: response.wind.speed + ' mph',
-          lat: response.coord.lat,
-          lon: response.coord.lon,
+          data:response.data,
+          icon:'https://openweathermap.org/img/wn/' + response.data.current.weather[0].icon + '@2x.png',
+          temp: Math.floor(response.data.current.temp) + '°',
+          precip:response.data.current.weather[0].description,
+          feel: Math.floor(response.data.current.feels_like) + '°',
+          wind: Math.floor(response.data.current.wind_speed) + ' mph',
+          lat: response.data.lat,
+          lon: response.data.lon,
 
         })
         return (response);
       })
-      .then(response=>{
-        return fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + response.coord.lat + '&lon=' + response.coord.lon + '&exclude=hourly,minutely&units=imperial&appid=04b8e3d0941e9ffc8add608468e01320')
-      })
-      .then(response=>response.json())
-      .then(response=>{
-        this.setState({
-          fiveDayTemps: response
-        })
-      })
-
     }
-
-
-
-
   render(){
 
     return(
