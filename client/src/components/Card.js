@@ -14,7 +14,7 @@ function Card(props){
   if(props.dayTemp){
     return(
         <div className='week-card'>
-          <h2 id='week-day'>{days[props.weekDay]}</h2>
+          <h2 id='week-day'>{props.weekDay}</h2>
           <h2 id='day-temp'>{Math.floor(props.dayTemp)+'°'}</h2>
         </div>
     )

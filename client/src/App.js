@@ -16,44 +16,25 @@ class App extends React.Component {
       feel:null,
       wind:null,
       uvIndex:null,
+      date:'',
+      days:[
+        'Sun',
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thurs',
+        'Fri',
+        'Sat',
+      ],
       fiveDayTemps:{
-        current:{
-          uvi:null,
-        },
-        daily:{
-          0:{
-            temp:{
-              max:null
-            }
-          },
-          1:{
-            temp:{
-              max:null
-            }
-          },
-          2:{
-            temp:{
-              max:null
-            }
-          },
-          3:{
-            temp:{
-              max:null
-            }
-          },
-          4:{
-            temp:{
-              max:null
-            }
-          },
-          5:{
-            temp:{
-              max:null
-            }
-          },
-        },
-      },
-      weekDays:[]
+        0:'',
+        1:{temp:''},
+        2:{temp:''},
+        3:{temp:''},
+        4:{temp:''},
+        5:{temp:''},
+    },
+
     }
 
     this.getData = this.getData.bind(this)
@@ -73,6 +54,7 @@ class App extends React.Component {
       .then(response=>{
         console.log(response);
         this.setState({
+          date: new Date(),
           data:response.data,
           icon:'https://openweathermap.org/img/wn/' + response.data.current.weather[0].icon + '@2x.png',
           temp: Math.floor(response.data.current.temp) + '°',
@@ -82,6 +64,9 @@ class App extends React.Component {
           lat: response.data.lat,
           lon: response.data.lon,
 
+          // Five day Temps
+          uvIndex:response.data.current.uvi,
+          fiveDayTemps:response.data.daily
         })
         return (response);
       })
@@ -106,12 +91,8 @@ class App extends React.Component {
             this.getData(document.querySelector('.city').value)
             document.querySelector('.week-ctnr').style.display = 'flex'
           }}
-          lat= {this.state.lat}
-          lon= {this.state.lon}
         />
-
       </div>
-
         <Weather
           city={this.state.data.name}
           icon={this.state.icon}
@@ -119,14 +100,14 @@ class App extends React.Component {
           precip={this.state.precip}
           feel={this.state.feel}
           wind={this.state.wind}
-          uvIndex={this.state.fiveDayTemps.current.uvi}
+          uvIndex={this.state.uvIndex}
         />
         <div className='week-ctnr'>
-          <Card weekDay= {new Date(this.state.fiveDayTemps.daily[1].dt * 1000).getDay()} dayTemp={this.state.fiveDayTemps.daily[1].temp.max} />
-          <Card weekDay= {new Date(this.state.fiveDayTemps.daily[2].dt * 1000).getDay()} dayTemp={this.state.fiveDayTemps.daily[2].temp.max} />
-          <Card weekDay= {new Date(this.state.fiveDayTemps.daily[3].dt * 1000).getDay()} dayTemp={this.state.fiveDayTemps.daily[3].temp.max} />
-          <Card weekDay= {new Date(this.state.fiveDayTemps.daily[4].dt * 1000).getDay()} dayTemp={this.state.fiveDayTemps.daily[4].temp.max} />
-          <Card weekDay= {new Date(this.state.fiveDayTemps.daily[5].dt * 1000).getDay()} dayTemp={this.state.fiveDayTemps.daily[5].temp.max} />
+          <Card weekDay={this.state.days[(new Date().getDay()+1)%7]} dayTemp={this.state.fiveDayTemps[1].temp.max}/>
+          <Card weekDay={this.state.days[(new Date().getDay()+2)%7]} dayTemp={this.state.fiveDayTemps[2].temp.max}/>
+          <Card weekDay={this.state.days[(new Date().getDay()+3)%7]} dayTemp={this.state.fiveDayTemps[3].temp.max}/>
+          <Card weekDay={this.state.days[(new Date().getDay()+4)%7]} dayTemp={this.state.fiveDayTemps[4].temp.max}/>
+          <Card weekDay={this.state.days[(new Date().getDay()+5)%7]} dayTemp={this.state.fiveDayTemps[5].temp.max}/>
         </div>
       </div>
   )}
